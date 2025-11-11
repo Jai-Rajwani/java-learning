@@ -3,8 +3,10 @@ plugins {
     id("base")
 }
 
-group = "org.example"
+group = "com.thisisjairajwani"
 version = "1.0-SNAPSHOT"
+
+defaultTasks 'test'
 
 repositories {
     mavenCentral()
@@ -21,6 +23,8 @@ tasks.test {
 }
 
 tasks.register("archiveFiles", Zip) {
+    group 'Java Learning'
+    description 'Compresses the src directory into a zip file'
     archiveBaseName = "srcZip"
     from("src/main/java")
     setDestinationDirectory(new File("./build/archives"))
