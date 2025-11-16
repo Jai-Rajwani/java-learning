@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,11 +40,7 @@ public class EncodeAndDecodeStringTest {
     }
 
     private List<String> getInputList(String ...inputs) {
-        List<String> inputList = new ArrayList<>();
-        for (String input : inputs) {
-            inputList.add(input);
-        }
-        return inputList;
+        return new ArrayList<>(Arrays.asList(inputs));
     }
     private void validate(List<String> expected, List<String> actual) {
         for (int i = 0; i < expected.size(); i++) {
