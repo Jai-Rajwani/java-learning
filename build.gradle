@@ -3,7 +3,8 @@ plugins {
     id("base")
 }
 
-group = "com.thisisjairajwani"
+group "com.thisisjairajwani"
+description "This project contains the solution of problems that I attempt on LeetCode and practical implementation of topics I learn related to Java, Gradle and other things"
 version = "1.0-SNAPSHOT"
 
 defaultTasks 'test'
@@ -28,4 +29,13 @@ tasks.register("archiveFiles", Zip) {
     archiveBaseName = "srcZip"
     from("src/main/java")
     setDestinationDirectory(new File("./build/archives"))
+}
+
+tasks.register('exampleTask') {
+    doLast {
+        println 'do last'
+    }
+    doFirst {
+        println 'do first'
+    }
 }
