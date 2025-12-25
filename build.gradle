@@ -3,8 +3,8 @@ plugins {
     id("base")
 }
 
-group "com.thisisjairajwani"
-description "This project contains the solution of problems that I attempt on LeetCode and practical implementation of topics I learn related to Java, Gradle and other things"
+group = "com.thisisjairajwani"
+description = "This project contains the solution of problems that I attempt on LeetCode and practical implementation of topics I learn related to Java, Gradle and other things"
 version = "1.0-SNAPSHOT"
 
 defaultTasks 'test'
@@ -16,16 +16,16 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher')
 }
 
-tasks.test {
+tasks.withType(Test).configureEach {
     useJUnitPlatform()
 }
 
 tasks.register("archiveFiles", Zip) {
-    group 'Java Learning'
-    description 'Compresses the src directory into a zip file'
+    group = 'Java Learning'
+    description = 'Compresses the src directory into a zip file'
     archiveBaseName = "srcZip"
     from("src/main/java")
     setDestinationDirectory(new File("./build/archives"))
