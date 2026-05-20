@@ -1,51 +1,35 @@
 package solutions;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class LongestConsecutiveSequence {
     public int longestConsecutive(int[] nums) {
-        if (nums.length < 1) return 0;
-        if (nums.length == 1) return 1;
-
-        int currentCounter = 0;
-        int maxCounter = 0;
-
-        Set<Integer> numSet = new HashSet<>(Arrays.stream(nums).boxed().toList());
-        for (int i = 0; i <= nums.length; i++) {
-            if (numSet.contains(nums[i] - 1)) {continue;}
-            if (numSet.contains(nums[i] + 1)) {
-                for (int j = 0; j <= nums.length; j++) {
-
-                }
-            }
+        if (nums.length < 2) {
+            return nums.length;
         }
 
+        int longestConsecutiveSequence = 0;
+        Set<Integer> set = Arrays.stream(nums).boxed().collect(Collectors.toSet());
 
-
-
-        return maxCounter;
+        for (int num : set) {
+            if (set.contains(num - 1)) {
+                continue;
+            }
+            int currentSequence = getCurrentSequenceLength(set, num);
+            longestConsecutiveSequence = Math.max(longestConsecutiveSequence, currentSequence);
+        }
+        return longestConsecutiveSequence;
     }
 
-    private int getSmallestElement(int[] nums) {
-        int smallest = 10^9;
-        for (int num : nums) {
-            if (num < smallest) {
-                smallest = num;
-            }
+    private int getCurrentSequenceLength(Set<Integer> set, int currentNum) {
+        int smallest = currentNum;
+        int currentSequenceLength = 0;
+        while (set.contains(smallest)) {
+            currentSequenceLength++;
+            smallest++;
         }
-        return smallest;
-    }
-
-    private int getLargestElement(int[] nums) {
-        int largest = -10^9;
-        for (int num : nums) {
-            if (num > largest) {
-                largest = num;
-            }
-        }
-        return largest;
+        return currentSequenceLength;
     }
 }
